@@ -20,26 +20,18 @@ Antes de rodar os testes localmente, você precisa garantir que o ambiente estej
 ## Como Rodar os Testes Localmente
 
 1. Clone o repositório:
-   ```bash
-   git clone https://github.com/usuario/repo.git
-   cd repo
+
+   ```git clone https://github.com/usuario/repo.git
+   cd repo```
+
 Instale as dependências:
 
-bash
-Copiar código
-mvn install
+`mvn install`
 Rode os testes:
 
-bash
-Copiar código
-mvn clean test
-Para gerar o relatório Allure:
+`mvn clean test`
 
-bash
-Copiar código
-mvn allure:serve
 GitHub Actions
 Este repositório possui um workflow configurado no GitHub Actions para rodar os testes automaticamente. Quando um push ou pull request for feito na branch main, os testes serão executados automaticamente.
 
-Como visualizar o relatório de testes no GitHub Actions:
-Após a execução dos testes, você pode acessar o relatório Allure gerado nos artefatos do workflow.
+
