@@ -1,0 +1,53 @@
+name: Run Mobile Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      appium:
+        image: appium/appium
+        ports:
+          - 4723:4723
+        options: >-
+          --entrypoint "/bin/bash -c 'appium --log-level info'"
+
+    steps:
+      # Check out the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up JDK 11
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adoptopenjdk'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          mvn install -DskipTests=true
+
+      # Run the tests using Maven
+      - name: Run tests
+        run: mvn clean test
+
+      # Generate Allure report
+      - name: Generate Allure Report
+        run: mvn allure:serve
+
+      # Upload Allure report as artifact (optional)
+      - name: Upload Allure report
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: target/site/allure-maven-plugin
