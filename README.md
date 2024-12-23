@@ -21,8 +21,7 @@ Antes de rodar os testes localmente, você precisa garantir que o ambiente estej
 
 1. Clone o repositório:
 
-   ```git clone https://github.com/usuario/repo.git
-   cd repo
+   ```git clone https://github.com/erick-qa/e2e_appium_java
 
 Instale as dependências:
 
